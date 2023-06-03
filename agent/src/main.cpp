@@ -13,7 +13,7 @@
 int main(int argc, char* argv[]) {
     if(argc == 2) {
         if(strcmp(argv[1], "-v") == 0) {
-            printf("%s_%d.%d.%d_%s\n", PROJECT_NAME, VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, COMPACT_BUILD_TIMESTAMP);
+            printf("%d.%d.%d-%s\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, COMPACT_BUILD_TIMESTAMP);
         }
 
         if(strcmp(argv[1], "-V") == 0) {
