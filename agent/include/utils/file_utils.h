@@ -14,7 +14,7 @@ using std::vector;
 
 bool writeStingToFile(const string &file, const string &conntent);
 
-int readLinesToFile(vector<sstring> &lines, const string &filePath);
+int readLinesToFile(vector<string> &lines, const string &filePath);
 
 int copyFile(const string &src, const string &desc);
 

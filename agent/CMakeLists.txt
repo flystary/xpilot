@@ -36,6 +36,7 @@ link_directories(/usr/local/lib64)
 
 AUX_SOURCE_DIRECTORY(src DIR_SRCS)
 AUX_SOURCE_DIRECTORY(src/config DIR_SRCS)
+AUX_SOURCE_DIRECTORY(src/utils DIR_SRCS)
 
 set(CMAKE_CXX_FLAGS -g)
 set(CMAKE_CXX_STANDARD 11)
@@ -45,4 +46,5 @@ set(SOURCE_FILES ${DIR_SRCS})
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 target_link_libraries(${PROJECT_NAME}
+        -ljsoncpp
         )

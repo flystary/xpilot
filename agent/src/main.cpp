@@ -7,7 +7,10 @@
 
 #include "iostream"
 #include "config/config.h"
+#include "utils/file_utils.h"
 #include "config.h"
+
+using std::string;
 
 
 int main(int argc, char* argv[]) {
@@ -24,6 +27,13 @@ int main(int argc, char* argv[]) {
         return 0;
     }
 
+    string src = "/etc/passwd";
+    string dst = "/tmp/tmp_passwd";
     sleep(1);
+
+    int nRet = copyFile(src, dst);
+
+    printf("%d\n", nRet);
+
     return 0;
 }
