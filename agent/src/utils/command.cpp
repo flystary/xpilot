@@ -6,7 +6,6 @@
 #include <config.h>
 #include <utils/command.h>
 #include <sys/time.h>
-#include "string"
 
 using cmd::command_xc;
 using std::to_string;

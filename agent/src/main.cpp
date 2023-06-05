@@ -9,6 +9,7 @@
 #include "config/config.h"
 #include "utils/file_utils.h"
 #include "config.h"
+#include <string>
 
 using std::string;
 
