@@ -2,10 +2,10 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
-#include <utils/command.h>
+#include "utils/command.h"
 
 using cmd::command_xc;
-#include <utils/file_utils.h>
+#include "utils/file_utils.h"
 
 
 using std::ios;
@@ -45,7 +45,7 @@ int copyFile(const string& src, const string& desc) {
     std::fstream in(src, std::ios::in);
     std::ofstream out(desc, std::ios::out);
     
-    if (!in | !out) {
+    if (!in || !out) {
         in.close();
         out.close();
         return -1;

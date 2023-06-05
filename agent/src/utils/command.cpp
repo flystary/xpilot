@@ -6,6 +6,7 @@
 #include <config.h>
 #include <utils/command.h>
 #include <sys/time.h>
+#include "string"
 
 using cmd::command_xc;
 using std::to_string;
@@ -13,7 +14,7 @@ using std::to_string;
 
 namespace cmd {
 
-command_xc:command_xc()
+command_xc::command_xc()
     : base_path_(base_exec_path) {
 } 
 

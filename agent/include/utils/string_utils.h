@@ -17,7 +17,6 @@ using pcrecpp::RE;
 using std::string;
 using std::stringstream;
 using std::time_t;
-using std::to_string;
 using std::vector;
 
 string prefixToStr(string prefix);

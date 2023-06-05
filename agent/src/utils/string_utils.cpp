@@ -3,14 +3,13 @@
 using pcrecpp::RE;
 using std::stringstream;
 using std::time_t;
-using std::to_string;
 
 bool isBlank(const string& target) {
     RE  oPattern("^[\\s]*$");
     return oPattern.FullMatch(target);
 }
 
-bool isNotBlank(const string& targt) {
+bool isNotBlank(const string& target) {
     return !isBlank(target);
 }
 
@@ -35,7 +34,7 @@ bool isMAC(const string& target) {
 }
 
 bool isPort(const int& port) {
-    return (port >= 0 && port < 65535);
+    return (port >= 0 && port < 65536);
 }
 
 bool isInteger(const string& target) {
@@ -85,7 +84,8 @@ string& strReplace(string& strBig, const string& strsrc, const string& strdst) {
 }
 
 int strSplit(const string& str, vector<string>& v, const char* p) {
-    auto tmp_str = (char*)malloc(str.size() + 1);
+    char* tmp_str = NULL;
+    tmp_str = (char*)malloc(str.size() + 1);
     memset(tmp_str, 0, str.size() + 1);
     memcpy(tmp_str, str.c_str(), str.size() + 1);
     v.clear();
@@ -100,11 +100,11 @@ int strSplit(const string& str, vector<string>& v, const char* p) {
     return v.size();
 }
 
-string coverTime(long duration) {
+string covertTime(long duration) {
     time_t tt;
-    tt = duraation;
-    char now(64);
-    strftime(now, 64, "%Y-%m-%d %H:%M:%S", localtime(&str));
+    tt = duration;
+    char now[64];
+    strftime(now, 64, "%Y-%m-%d %H:%M:%S", localtime(&tt));
     return now;
 }
 
@@ -112,7 +112,7 @@ time_t covertTime(string str) {
     tm tm_;
     char* cha = (char*)str.data();
     int year, month, day, hour, minute, second;
-    sscanf(cha, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
+    std::sscanf(cha, "%d-%d-%d %d:%d:%d", &year, &month, &day, &hour, &minute, &second);
     tm_.tm_year = year - 1900;
     tm_.tm_mon  = month - 1;
     tm_.tm_mday = day;
@@ -137,8 +137,6 @@ void int_to_bytes(int32_t i, char *bytes) {
     bytes[2] = 0xff & i >> 8;
     bytes[1] = 0xff & i >> 16;
     bytes[0] = 0xff & i >> 24;
-
-    return i;
 }
 
 int32_t bytes_to_int(char *bytes) {
@@ -146,7 +144,7 @@ int32_t bytes_to_int(char *bytes) {
     i += ((unsigned char) bytes[0] << 24);
     i += ((unsigned char) bytes[1] << 16);
     i += ((unsigned char) bytes[2] << 8);
-    i += ((unsigned char) bytes[3];
+    i += (unsigned char)  bytes[3];
 
     return i;
 }
