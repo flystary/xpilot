@@ -159,3 +159,113 @@ string& replace_all(string& str, const string& old_value, const string& new_valu
     return str;
 }
 
+bool equals(const string& str1, const string& str2) {
+    bool b;
+    str1 == str2 ? b = true : b = false;
+
+    return b;
+}
+
+bool str_to_bool(const string& str) {
+    if (str == "true")
+        return true;
+    if (str == "false")
+        return false;
+
+    return false;
+}
+
+string uuidGenerate() {
+    string uuidStr;
+    uuid_t uu;
+
+    uuid_generate(uu);
+    char out[37];
+    uuid_unparse(uu, out);
+    uuidStr.append(out);
+    return uuidStr;
+}
+
+Json::Value str_to_json(const string& str) {
+    Json::Value value;
+    string err;
+    
+    Json::CharReaderBuilder reader;
+    std::unique_ptr<Json::CharReader> const json_read(reader.newCharReader());
+    json_read->parse(str.c_str(), str.c_str() + str.length(), &value, &err);
+    return value;
+}
+
+string formatCurTime(const string& format) {
+    string time;
+    stringstream strtime;
+
+    time_t currenttime = std::time(0);
+    char tAll[255];
+    std::strftime(tAll, sizeof(tAll), format.c_str(), std::localtime(&currenttime));
+    strtime << tAll;
+    time = strtime.str();
+    return time;
+}
+
+string formatTime(const string& format, time_t time) {
+    string strTime;
+    stringstream stime;
+    time_t currenttime = 0;
+    if (time <= 0)
+        currenttime = std::time(0);
+    else
+        currenttime = time;
+    char tAll[255];
+    std::strftime(tAll, sizeof(tAll), format.c_str(), std::localtime(&currenttime));
+    stime << tAll;
+    strTime = stime.str();
+    return strTime;
+}
+
+time_t strTime2unix(const std::string& timeStamp) {
+    struct tm tm;
+    memset(&tm, 0, sizeof(tm));
+
+    sscanf(timeStamp.c_str(), "%d-%d-%d %d:%d:%d",
+           &tm.tm_year, &tm.tm_mon, &tm.tm_mday,
+           &tm.tm_hour, &tm.tm_min, &tm.tm_sec);
+
+    tm.tm_year -= 1900;
+    tm.tm_mon--;
+
+    return mktime(&tm);
+}
+
+int prefixToint(string prefix) {
+    if (prefix == "0") {
+        return 0;
+    }
+    int result = -1;
+    result = result << (32 - atoi(prefix.c_str()));
+    return result;
+}
+
+string intToStr(int intIPv4) {
+    return to_string(((intIPv4 >> 24) & 0xFF)) + "." + to_string(((intIPv4 >> 16) & 0xFF)) + "." + to_string(((intIPv4 >> 8) & 0xFF)) + "." + to_string((intIPv4 & 0xFF));
+}
+
+string prefixToStr(string prefix) {
+    return intToStr(prefixToint(prefix));
+}
+
+int jsonStrtoStyledString(string &jsonStr){
+    Json::CharReaderBuilder builder;
+    JSONCPP_STRING errs;
+    Json::CharReader* reader = builder.newCharReader();
+    Json::Value value;
+    bool temp = reader->parse(jsonStr.c_str(), jsonStr.c_str() + jsonStr.length(), &value, &errs);
+    delete reader;
+    if (!temp)
+    {
+        return -1;
+    }
+    jsonStr = value.toStyledString();
+    return 0;
+}
+
