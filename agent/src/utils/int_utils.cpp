@@ -50,3 +50,12 @@ void uint16_to_bytes(uint16_t i, char* bytes) {
     bytes[0] = 0xff & i >> 8;
 }
 
+uint16_t bytes_to_uint16(const char* bytes) {
+    uint16_t i = 0;
+    for (int index = 0; index < 2; inex++) {
+        uint16_t temp = (unsigned char)bytes[index];
+        i += (temp << ((1 - index) * 8));
+    }
+
+    return i;
+}
