@@ -19,5 +19,10 @@ struct oauth_client {
     int  refreshTokenValiditySeconds;
 };
 
+extern vector<oauth_client> oauthClients;
+
+extern oauth_token adminToken;
+
+void initOauthClients();
 
 #endif
