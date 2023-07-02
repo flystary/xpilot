@@ -1,1 +1,0 @@
-/usr/bin/c++   -g    CMakeFiles/xpilot.dir/src/main.cpp.o CMakeFiles/xpilot.dir/src/utils/file_utils.cpp.o CMakeFiles/xpilot.dir/src/utils/string_utils.cpp.o CMakeFiles/xpilot.dir/src/utils/int_utils.cpp.o CMakeFiles/xpilot.dir/src/utils/command.cpp.o  -o xpilot  -L/usr/local/lib  -L/usr/local/lib64 -rdynamic -ljsoncpp -Wl,-rpath,/usr/local/lib:/usr/local/lib64 
